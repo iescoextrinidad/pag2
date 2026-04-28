@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio de Tecnología - Índice de Recursos</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --arduino: #00979d;
+            --print3d: #e67e22;
+            --mongo: #4db33d;
+            --bg: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { opacity: 0.8; margin-top: 10px; }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .card-header {
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .arduino-h { background-color: var(--arduino); }
+        .print3d-h { background-color: var(--print3d); }
+        .mongo-h { background-color: var(--mongo); }
+
+        .card-body { padding: 20px; }
+
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .file-list li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .file-list li:last-child { border: none; }
+
+        .file-list a {
+            text-decoration: none;
+            color: #34495e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-list a:hover { color: var(--primary); font-weight: bold; }
+
+        .badge {
+            font-size: 0.75rem;
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Portal del Laboratorio</h1>
+    <p>Recursos de Robótica, Impresión 3D y Programación</p>
+</header>
+
+<div class="container">
+    <div class="category-grid">
+        
+        <div class="card">
+            <div class="card-header arduino-h">
+                <span>🤖 Electrónica & Arduino</span>
+            </div>
+            <div class="card-body">
+                <ul class="file-list">
+                    <li><a href="arduino.html">Introducción General <span class="badge">HTML</span></a></li>
+                    <li><a href="arduino2.html">Guía de Pines y PWM <span class="badge">HTML</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header print3d-h">
+                <span>🛠️ Impresión 3D</span>
+            </div>
+            <div class="card-body">
+                <ul class="file-list">
+                    <li><a href="impresora3d.html">Anatomía y Materiales <span class="badge">HTML</span></a></li>
+                    <li><a href="impresora3d2.html">Flujo: STL a G-Code <span class="badge">HTML</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header mongo-h">
+                <span>📊 Base de Datos (Mongo)</span>
+            </div>
+            <div class="card-body">
+                <ul class="file-list">
+                    <li><a href="Mongo.html">Configuración Inicial <span class="badge">HTML</span></a></li>
+                    <li><a href="Mongo1.html">Comandos y Consultas <span class="badge">HTML</span></a></li>
+                    <li><a href="Mongo2.html">Integración con Node.js <span class="badge">HTML</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer style="text-align: center; margin-top: 50px; color: #95a5a6; padding-bottom: 30px;">
+    <p>© 2026 Laboratorio de Tecnología - Escuela Secundaria</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología de Impresión 3D</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fdfdfd;
+        }
+        header {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            padding: 2.5rem;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e1e8ed;
+            transition: transform 0.3s ease;
+        }
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: #e67e22;
+            border-left: 5px solid #e67e22;
+            padding-left: 15px;
+            margin-top: 0;
+        }
+        .part-list {
+            list-style: none;
+            padding: 0;
+        }
+        .part-list li {
+            background: #f8f9fa;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .material-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .pla { background: #d4edda; color: #155724; }
+        .petg { background: #cce5ff; color: #004085; }
+        .abs { background: #f8d7da; color: #721c24; }
+        
+        .tip-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Impresión 3D: De lo Digital a lo Físico</h1>
+    <p>Modelado por Deposición Fundida (FDM)</p>
+</header>
+
+<div class="grid">
+    <section>
+        <h2>Anatomía de la Impresora</h2>
+        <ul class="part-list">
+            <li><strong>Extrusor:</strong> El motor que empuja el filamento.</li>
+            <li><strong>Hotend:</strong> La boquilla que calienta y funde el plástico.</li>
+            <li><strong>Cama Caliente:</strong> Superficie donde se adhiere la pieza.</li>
+            <li><strong>Ejes (X, Y, Z):</strong> Los motores que permiten el movimiento 3D.</li>
+            <li><strong>Nivelador:</strong> Sensor o tornillos para ajustar la distancia boquilla-cama.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Materiales Comunes</h2>
+        <p>Los filamentos más usados en el taller:</p>
+        <p><span class="material-tag pla">PLA</span> Fácil de imprimir, biodegradable, no requiere cama muy caliente (60°C).</p>
+        <p><span class="material-tag petg">PETG</span> Resistente y flexible. Ideal para piezas mecánicas o de exterior.</p>
+        <p><span class="material-tag abs">ABS</span> Muy resistente pero difícil. Requiere cabina cerrada por los gases y la temperatura.</p>
+        
+        <div class="tip-box">
+            <strong>💡 Tip de mantenimiento:</strong> ¡Cuidado con la humedad! El filamento húmedo causa burbujas y fallos en la impresión. Guardalo siempre en bolsas selladas.
+        </div>
+    </section>
+</div>
+
+<section style="margin-top: 25px;">
+    <h2>El Proceso de Trabajo</h2>
+    <ol>
+        <li><strong>Diseño:</strong> Crear la pieza en 3D (Tinkercad, Fusion 360).</li>
+        <li><strong>Laminado (Slicing):</strong> Usar software (Cura, PrusaSlicer) para convertir el 3D en código G (G-Code).</li>
+        <li><strong>Impresión:</strong> La máquina lee el código y fabrica la pieza capa por capa.</li>
+        <li><strong>Post-procesado:</strong> Quitar soportes y lijar si es necesario.</li>
+    </ol>
+</section>
+
+<footer style="text-align: center; margin-top: 40px; color: #7f8c8d;">
+    <p>Laboratorio de Tecnología y Robótica - Proyectos 2026</p>
+</footer>
+
+</body>
+</html>

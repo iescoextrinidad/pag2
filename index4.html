@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Laboratorio de Tecnología</title>
+    <style>
+        /* Variables de color para fácil mantenimiento */
+        :root {
+            --bg-principal: #f0f2f5;
+            --texto: #2c3e50;
+            --sombra: rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-principal);
+            margin: 0;
+            color: var(--texto);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e2a38 0%, #2c3e50 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px var(--sombra);
+        }
+
+        header h1 { margin: 0; font-size: 2.2rem; letter-spacing: 1px; }
+        header p { margin: 10px 0 0; opacity: 0.8; font-weight: 300; }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Cuadrícula responsiva */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px var(--sombra);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            padding: 18px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .file-list li {
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .file-list li:last-child { border: none; }
+
+        .file-list a {
+            text-decoration: none;
+            color: #34495e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .file-list a:hover {
+            color: #000;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            background: #f8f9fa;
+            color: #7f8c8d;
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Portal de Recursos Técnicos</h1>
+    <p>Escuela Secundaria - Proyectos 2026</p>
+</header>
+
+<div class="container">
+    <div class="category-grid" id="menu-principal"></div>
+</div>
+
+<footer>
+    <p>Aguilares, Tucumán | © 2026 Carlos Erasmo Alvarado</p>
+</footer>
+
+<script>
+    /**
+     * 1. LISTA DE CONTENIDOS
+     * Solo tenés que agregar líneas acá para que aparezcan en la web.
+     */
+    const paginas = [
+        { categoria: 'arduino', titulo: 'Introducción a Arduino', link: 'arduino.html' },
+        { categoria: 'arduino', titulo: 'Pines Digitales y PWM', link: 'arduino2.html' },
+        { categoria: 'print3d', titulo: 'Anatomía y Hotend', link: 'impresora3d.html' },
+        { categoria: 'print3d', titulo: 'Del STL al G-Code', link: 'impresora3d2.html' },
+        { categoria: 'mongo',   titulo: 'Configuración MongoDB', link: 'Mongo.html' },
+        { categoria: 'mongo',   titulo: 'Consultas y Comandos', link: 'Mongo1.html' },
+        { categoria: 'mongo',   titulo: 'Server con Node.js', link: 'Mongo2.html' },
+        // Ejemplo de una nueva categoría para el futuro:
+        { categoria: 'windows', titulo: 'Optimización Win 10 LTSC', link: 'netbooks.html' }
+    ];
+
+    /**
+     * 2. CONFIGURACIÓN DE LAS CATEGORÍAS
+     * Definí aquí los nombres que se verán en las tarjetas y sus colores.
+     */
+    const configCategorias = {
+        arduino: { nombre: '🤖 Arduino & Electrónica', color: '#00979d' },
+        print3d: { nombre: '🛠️ Impresión 3D', color: '#e67e22' },
+        mongo:   { nombre: '📊 Base de Datos', color: '#4db33d' },
+        windows: { nombre: '🪟 Soporte & Windows', color: '#0078d7' },
+        default: { nombre: '📁 Otros Recursos', color: '#7f8c8d' }
+    };
+
+    const contenedor = document.getElementById('menu-principal');
+
+    function renderizarMenu() {
+        // Obtenemos las categorías que realmente tienen archivos
+        const categoriasEnUso = [...new Set(paginas.map(p => p.categoria))];
+
+        let htmlHTML = '';
+
+        categoriasEnUso.forEach(cat => {
+            const archivos = paginas.filter(p => p.categoria === cat);
+            const conf = configCategorias[cat] || configCategorias['default'];
+
+            htmlHTML += `
+                <div class="card">
+                    <div class="card-header" style="background-color: ${conf.color};">
+                        ${conf.nombre}
+                    </div>
+                    <div class="card-body">
+                        <ul class="file-list">
+                            ${archivos.map(a => `
+                                <li>
+                                    <a href="${a.link}" target="_blank">
+                                        ${a.titulo}
+                                        <span class="badge">Abrir</span>
+                                    </a>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        });
+
+        contenedor.innerHTML = htmlHTML;
+    }
+
+    // Iniciar la generación
+    renderizarMenu();
+</script>
+
+</body>
+</html>

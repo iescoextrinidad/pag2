@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a Arduino</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #00979d;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #00979d;
+            border-bottom: 2px solid #00979d;
+            padding-bottom: 10px;
+        }
+        .component-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .card {
+            background: #e6f4f4;
+            padding: 15px;
+            border-left: 5px solid #008184;
+            border-radius: 4px;
+        }
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .keyword { color: #f92672; }
+        .function { color: #a6e22e; }
+        .comment { color: #75715e; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Explorando el Mundo de Arduino</h1>
+    <p>La plataforma líder para prototipado electrónico de código abierto</p>
+</header>
+
+<section>
+    <h2>¿Qué es Arduino?</h2>
+    <p>Arduino es una plataforma de creación de electrónica de <strong>código abierto (open-source)</strong>, basada en hardware y software libre, flexible y fácil de utilizar para los creadores y desarrolladores. Esta plataforma permite crear objetos interactivos que pueden sensar el entorno y actuar sobre él.</p>
+</section>
+
+<section>
+    <h2>Componentes Principales de una Placa</h2>
+    <div class="component-list">
+        <div class="card">
+            <strong>Microcontrolador:</strong> El "cerebro" que procesa las instrucciones (comúnmente ATmega328P).
+        </div>
+        <div class="card">
+            <strong>Pines Digitales:</strong> Entradas/Salidas que solo entienden dos estados: encendido o apagado.
+        </div>
+        <div class="card">
+            <strong>Pines Analógicos:</strong> Pueden leer un rango de valores (útil para sensores de temperatura o luz).
+        </div>
+        <div class="card">
+            <strong>Puerto USB:</strong> Para cargar el código desde la computadora y alimentar la placa.
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Ejemplo de Código: "Blink"</h2>
+    <p>Este es el "Hola Mundo" de la electrónica, donde hacemos parpadear un LED conectado al pin 13.</p>
+    <pre><code><span class="comment">// La función setup se ejecuta una vez al inicio</span>
+<span class="keyword">void</span> <span class="function">setup</span>() {
+  <span class="function">pinMode</span>(13, <span class="keyword">OUTPUT</span>); <span class="comment">// Configura el pin 13 como salida</span>
+}
+
+<span class="comment">// La función loop se repite infinitamente</span>
+<span class="keyword">void</span> <span class="function">loop</span>() {
+  <span class="function">digitalWrite</span>(13, <span class="keyword">HIGH</span>); <span class="comment">// Enciende el LED</span>
+  <span class="function">delay</span>(1000);           <span class="comment">// Espera un segundo</span>
+  <span class="function">digitalWrite</span>(13, <span class="keyword">LOW</span>);  <span class="comment">// Apaga el LED</span>
+  <span class="function">delay</span>(1000);           <span class="comment">// Espera un segundo</span>
+}</code></pre>
+</section>
+
+<footer>
+    <p style="text-align: center; color: #777;">Documento generado para fines educativos sobre Robótica y Electrónica.</p>
+</footer>
+
+</body>
+</html>

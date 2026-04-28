@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pines de Arduino</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+        header {
+            background-color: #008184;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        section {
+            flex: 1 1 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        h2 { color: #008184; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        th { background-color: #e6f4f4; }
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .digital { background: #d1e7dd; color: #0f5132; }
+        .analog { background: #fff3cd; color: #664d03; }
+        .power { background: #f8d7da; color: #842029; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Guía de Pines de Arduino</h1>
+    <p>Entendiendo las Entradas y Salidas</p>
+</header>
+
+<div class="container">
+    <section>
+        <h2>Tipos de Pines</h2>
+        <p>En una placa estándar como la UNO, encontramos diferentes categorías de conexión:</p>
+        <table>
+            <tr>
+                <th>Pin</th>
+                <th>Función</th>
+                <th>Tipo</th>
+            </tr>
+            <tr>
+                <td>0 y 1</td>
+                <td>Comunicación Serial (RX/TX)</td>
+                <td><span class="badge digital">Digital</span></td>
+            </tr>
+            <tr>
+                <td>2 al 13</td>
+                <td>Entradas/Salidas Generales</td>
+                <td><span class="badge digital">Digital</span></td>
+            </tr>
+            <tr>
+                <td>3, 5, 6, 9, 10, 11</td>
+                <td>Soporta PWM (señal analógica simulada)</td>
+                <td><span class="badge digital">PWM</span></td>
+            </tr>
+            <tr>
+                <td>A0 al A5</td>
+                <td>Lectura de Sensores Análogos</td>
+                <td><span class="badge analog">Analógico</span></td>
+            </tr>
+            <tr>
+                <td>5V, 3.3V, GND</td>
+                <td>Alimentación y Tierra</td>
+                <td><span class="badge power">Energía</span></td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Conceptos Clave</h2>
+        <h3>Digital vs Analógico</h3>
+        <p>Los <strong>Pines Digitales</strong> funcionan como un interruptor: o hay 5V (HIGH) o hay 0V (LOW). Ideales para botones o encender luces.</p>
+        <p>Los <strong>Pines Analógicos</strong> pueden medir voltajes intermedios. Por ejemplo, pueden detectar si un potenciómetro está a la mitad o si un sensor de luz recibe poca claridad.</p>
+        
+        <h3>PWM (Modulación por Ancho de Pulsos)</h3>
+        <p>Identificados con un símbolo de tilde (<strong>~</strong>). Permiten simular una salida analógica variando la rapidez con la que el pin se enciende y apaga. Se usa mucho para controlar la velocidad de motores o el brillo de un LED.</p>
+    </section>
+</div>
+
+<footer style="margin-top: 30px; text-align: center; font-size: 0.9em; color: #666;">
+    <p>Tip: Siempre recordá verificar el voltaje máximo de entrada para no dañar el microcontrolador.</p>
+</footer>
+
+</body>
+</html>

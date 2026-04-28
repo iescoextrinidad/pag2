@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Visor de Carga - MongoDB v4</title>
+    <style>
+        :root { --green: #13aa52; --dark: #001e2b; --bg: #f0f2f5; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; display: flex; flex-direction: column; height: 100vh; }
+        
+        header { background: var(--dark); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .main-container { display: flex; flex: 1; padding: 20px; gap: 20px; overflow: hidden; }
+        
+        /* Panel de entrada */
+        .panel-input { flex: 1; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .field { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--dark); }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        
+        /* Panel de visualización */
+        .panel-output { flex: 1; background: #21313c; color: #f8f8f2; padding: 20px; border-radius: 8px; position: relative; overflow-y: auto; }
+        .panel-output h3 { color: var(--green); margin-top: 0; }
+        pre { font-family: 'Consolas', monospace; font-size: 1.1rem; line-height: 1.5; }
+        
+        .btn-mongo { background: var(--green); color: white; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem; }
+        .btn-mongo:hover { background: #108c44; }
+        
+        .status { margin-top: 10px; font-size: 0.85rem; color: #666; font-style: italic; }
+        .key { color: #a6e22e; } /* Verde para llaves */
+        .string { color: #e6db74; } /* Amarillo para textos */
+        .number { color: #ae81ff; } /* Morado para números */
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-size: 1.5rem; font-weight: bold;">MongoDB <span style="color: var(--green);">v4.4</span></div>
+    <div>Simulador de Inserción (insertOne)</div>
+</header>
+
+<div class="main-container">
+    <div class="panel-input">
+        <h3>Cargar nuevo equipo</h3>
+        <div class="field">
+            <label>Nombre del Item:</label>
+            <input type="text" id="item" placeholder="Ej: Tester, Osciloscopio..." oninput="updatePreview()">
+        </div>
+        <div class="field">
+            <label>Cantidad (Stock):</label>
+            <input type="number" id="cantidad" value="1" oninput="updatePreview()">
+        </div>
+        <div class="field">
+            <label>Estado:</label>
+            <select id="estado" onchange="updatePreview()">
+                <option value="operativo">Operativo</option>
+                <option value="en reparacion">En Reparación</option>
+                <option value="desechado">Desechado</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Ubicación:</label>
+            <input type="text" id="ubicacion" placeholder="Ej: Estante A, Lab 1..." oninput="updatePreview()">
+        </div>
+        
+        <button class="btn-mongo" onclick="alert('Documento listo para enviar a la colección Laboratorio')">Generar Documento</button>
+        <p class="status">Este simulador genera un ObjectId único automáticamente como lo hace MongoDB 4.</p>
+    </div>
+
+    <div class="panel-output">
+        <h3>Colección: Inventario</h3>
+        <p style="color: #888; font-size: 0.8rem;">// Documento resultante en la base de datos</p>
+        <pre id="json-preview"></pre>
+    </div>
+</div>
+
+<script>
+    function updatePreview() {
+        const item = document.getElementById('item').value || "...";
+        const cantidad = parseInt(document.getElementById('cantidad').value) || 0;
+        const estado = document.getElementById('estado').value;
+        const ubicacion = document.getElementById('ubicacion').value || "No asignada";
+        
+        // Simulación de ObjectId de MongoDB 4
+        const mockId = "5f" + Math.random().toString(16).substr(2, 22);
+
+        const jsonContent = `{
+  <span class="key">"_id"</span>: <span class="string">ObjectId("${mockId}")</span>,
+  <span class="key">"item"</span>: <span class="string">"${item}"</span>,
+  <span class="key">"cantidad"</span>: <span class="number">${cantidad}</span>,
+  <span class="key">"estado"</span>: <span class="string">"${estado}"</span>,
+  <span class="key">"detalles"</span>: {
+      <span class="key">"ubicacion"</span>: <span class="string">"${ubicacion}"</span>,
+      <span class="key">"fecha_carga"</span>: <span class="string">"${new Date().toLocaleDateString()}"</span>
+  }
+}`;
+        document.getElementById('json-preview').innerHTML = jsonContent;
+    }
+
+    // Inicializar al cargar
+    updatePreview();
+</script>
+
+</body>
+</html>
